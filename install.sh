@@ -17,27 +17,15 @@ if [[ "$OS" == "mac" ]]; then
   brew install fzf ripgrep bat eza zoxide tldr git-delta 2>/dev/null ||
     brew upgrade fzf ripgrep bat eza zoxide tldr git-delta 2>/dev/null || true
 else
-  sudo apt-get update -qq
-  sudo apt-get install -y fzf ripgrep bat zoxide tldr
+  command -v brew &>/dev/null || {
+    NONINTERACTIVE=1 \
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  }
 
-  # git-delta is not in Ubuntu Jammy, install from GitHub
-  if ! command -v delta &>/dev/null; then
-    DELTA_VER=$(curl -s https://api.github.com/repos/dandavison/delta/releases/latest | grep -Po '"tag_name": "\K[^"]+')
-    curl -Lo /tmp/git-delta.deb \
-      "https://github.com/dandavison/delta/releases/download/${DELTA_VER}/git-delta_${DELTA_VER}_amd64.deb"
-    sudo dpkg -i /tmp/git-delta.deb
-    rm /tmp/git-delta.deb
-  fi
-
-  # if bat binary is called batcat on Ubuntu aliases it
-  if command -v batcat &>/dev/null && ! command -v bat &>/dev/null; then
-    mkdir -p ~/.local/bin && ln -sf "$(command -v batcat)" ~/.local/bin/bat
-  fi
-
-  curl -Lo /tmp/eza.tar.gz \
-    https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
-  tar -xzf /tmp/eza.tar.gz -C /tmp && sudo mv /tmp/eza /usr/local/bin/eza
-  rm /tmp/eza.tar.gz
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  brew update --quiet
+  brew install fzf ripgrep bat eza zoxide tldr git-delta 2>/dev/null ||
+    brew upgrade fzf ripgrep bat eza zoxide tldr git-delta 2>/dev/null || true
 fi
 
 if [[ -d "$HOME/.oh-my-zsh" ]]; then

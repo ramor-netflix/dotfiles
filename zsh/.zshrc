@@ -37,3 +37,10 @@ eval "$(zoxide init zsh)"
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
+
+# homebrew
+if [[ -d /home/linuxbrew/.linuxbrew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
