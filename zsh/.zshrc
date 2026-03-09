@@ -33,6 +33,23 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # zoxide
 eval "$(zoxide init zsh)"
 
+# Autoinstall any git pre-commit hooks when entering any repo
+# Runs for every `cd`, should be low overhead/latency though
+_precommit_autoinstall() {
+  if git rev-parse --git-dir &>/dev/null 2>&1; then
+    local root
+    root="$(git rev-parse --show-toplevel 2>/dev/null)"
+    if [[ -f "$root/.pre-commit-config.yaml" && ! -f "$root/.git/hooks/pre-commit" ]]; then
+      echo "pre-commit: installing hooks..."
+      pre-commit install --install-hooks
+    fi
+  fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _precommit_autoinstall
+
+alias pc="pre-commit run --all-files"
+
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
