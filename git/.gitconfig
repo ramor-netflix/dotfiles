@@ -5,6 +5,9 @@
   features = side-by-side line-numbers
   hunk-header-decoration-style = none
 
+[pull]
+  rebase = true
+
 [merge]
   conflictstyle = diff3
 

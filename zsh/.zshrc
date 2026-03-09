@@ -47,8 +47,10 @@ _precommit_autoinstall() {
 }
 autoload -Uz add-zsh-hook
 add-zsh-hook chpwd _precommit_autoinstall
+_precommit_autoinstall
 
 alias pc="pre-commit run --all-files"
+alias gl="git log"
 
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
