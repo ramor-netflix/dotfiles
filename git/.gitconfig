@@ -16,3 +16,5 @@
 [user]
 	email = ramorstem2022@gmail.com
 	name = Andre Amor
+[push]
+	autoSetupRemote = true
