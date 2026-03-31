@@ -13,6 +13,13 @@ Written for macOS and Ubuntu.
 - zoxide
 - delta
 - tldr
+- kubectl
+- kubectx / kubens
+- helm
+- k9s
+- minikube
+- stern
+- argocd
 
 ## Installation
 
