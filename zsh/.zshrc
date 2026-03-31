@@ -40,6 +40,24 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # zoxide
 eval "$(zoxide init zsh)"
 
+# kubernetes
+if command -v kubectl &>/dev/null; then
+  source <(kubectl completion zsh)
+  alias k="kubectl"
+  compdef __start_kubectl k
+
+  alias kgp="kubectl get pods"
+  alias kgs="kubectl get svc"
+  alias kgn="kubectl get nodes"
+fi
+
+if command -v helm &>/dev/null; then
+  source <(helm completion zsh)
+fi
+
+alias kctx="kubectx"
+alias kns="kubens"
+
 # Autoinstall any git pre-commit hooks when entering any repo
 # Runs for every `cd`, should be low overhead/latency though
 _precommit_autoinstall() {
