@@ -80,4 +80,3 @@ alias gl="git log"
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
