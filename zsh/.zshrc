@@ -33,6 +33,9 @@ alias lt="eza --tree --level=2 --color=never"
 # bat
 alias cat="bat --paging=never --plain"
 
+# clear
+alias c="clear"
+
 # fzf & ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
