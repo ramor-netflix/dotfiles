@@ -78,4 +78,7 @@ ln -sf "$DOTFILES/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
 
+# Claude Code
+command -v claude &>/dev/null || curl -fsSL https://claude.ai/install.sh | bash
+
 echo "Installed! Restart terminal or run: source ~/.zshrc"
